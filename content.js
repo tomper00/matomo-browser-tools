@@ -26,7 +26,7 @@ document.onreadystatechange = () => {
                         allLinks[i].href.search(".doc") == -1)
                         //If we already have an URL parameter then add code with &
                         if (allLinks[i].href.search("/?") != -1 && allLinks[i].href.search("/#") != -1)
-                            allLinks[i].href = allLinks[i].href + "&mtmPreviewMode=PJugJwYH ";
+                            allLinks[i].href = allLinks[i].href + "&mtmPreviewMode=" + previewCode;
                         else
                             allLinks[i].href = allLinks[i].href + "?mtmPreviewMode=" + previewCode;
                 }
