@@ -1,0 +1,35 @@
+{
+    "name": "Open Digital Analytics - Matomo Browser Tools",
+    "version": "1.0",
+    "description": "Help you work with Matomo in the browser",
+    "permissions": ["activeTab", "declarativeContent", "storage","notifications"],
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+    "content_scripts": [
+        {
+            "matches": [
+            "<all_urls>"
+          ],
+            "js": ["content.js"]
+        }
+      ],
+    "page_action": {
+		"default_title": "Matomo browser tools by Open Digital Analytics",    
+        "default_popup": "popup.html",
+        "default_icon": {
+            "16": "images/oda-logo-16.png",
+            "32": "images/oda-logo-32.png",
+            "48": "images/oda-logo-48.png",
+            "128": "images/oda-logo-128.png"
+        }
+    },
+    "icons": {
+        "16": "images/digi16.png",
+        "32": "images/digi32.png",
+        "48": "images/digi48.png",
+        "128": "images/digi128.png"
+    },
+    "manifest_version": 2
+}

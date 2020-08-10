@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+        h1 {
+            font-size: 15px;
+            margin: 15px;
+        }
+        h2 {
+            font-size: 13px;
+        } 
+        #logo {
+            float: left;
+        }    
+      body {
+        height: 200px;
+        width: 500px;
+        outline: none;
+        padding: 10px;
+        text-align: left;
+        display: block;
+          
+      }
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #tagmanagerDebugWrapper {
+            display: grid;
+            padding: 20px;
+            clear: both;
+            border: 1px solid #cccccc;
+        } 
+        button {
+            margin-top: 10px;
+            
+          width: 200px;
+          height: 20px;
+        }
+        label {
+
+
+        }
+    </style>
+  </head>
+  <body>
+    <img id="logo" width="50" src="images/digi128.png">  
+    <h1>Matomo Browser Tools by @tomper00 at Open Digital Analytics</h1>  
+    <div id="tagmanagerDebugWrapper">  
+    <h2>Appy Matomo TagManager debugging to all your pages</h2>
+    <label>Enable debugging</label>
+    <input name="enableDebug" id="enableDebug" type="checkbox"/>
+    <label>Add your preview code</label>
+    <label>example <b>PJugJwYH</b> ("Do not add the ?mtmPreviewMode part")</label>
+    <label>You will find this code in you TagManager</label>
+    <input id="previewCode" name="previewCode" type="text"/>
+    <label>Add the domain where you want this code to run.</label>
+    <label>Example: example.com </label>
+    <input id="debugDomain" name="debugDomain" type="text"/>      
+    </div>
+    <script src="popup.js"></script>
+        
+  </body>
+</html>
