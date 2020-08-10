@@ -9,5 +9,16 @@ As an example this means that the link https://example.com/about-us will look li
 
 # Installation:
 For now this is only avalible in development mode meaning you will have to download this package locally and unzip it.
-Then put Chrome into Dev mode and upload the file as a local plugin.
+Then put Chrome into Dev mode and upload the file as a local plugin. 
+
+Open the Extension Management page by navigating to chrome://extensions.
+The Extension Management page can also be opened by clicking on the Chrome menu, hovering over More Tools then selecting Extensions.
+Enable Developer Mode by clicking the toggle switch next to Developer mode.
+Click the LOAD UNPACKED button and select the extension directory (the file you downloaded).
+
+
+Read here for more info about chrome development
+https://developer.chrome.com/extensions/getstarted
+
 As soon as I feel this plugin is a bit more stable and get some feedback from other I will try to publish it as an official plugin.
+
