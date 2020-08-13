@@ -1,6 +1,11 @@
 # matomo-browser-tools
 A tool that help you with tag implementations for Matomo
 
+# Features
+-Add the TagManager preview code all urls of the site you work with (no more manual copy / paste / reload page)
+-Send fake pageviews
+-Send fake events
+
 The first version give you the ability to add the preview code from Matomo Tag Manager to all your internal links.
 This means that if you are working with the site https://example.com we will revrite all the Links in that site so that we always try to add the Matomo TagManager previrew code.
 
