@@ -1,6 +1,5 @@
 document.onreadystatechange = () => {
     if (document.readyState === 'complete') {
-
         var previewCode;
         //Get preview code
         chrome.storage.sync.get('previewCode', function (data) {
@@ -8,12 +7,11 @@ document.onreadystatechange = () => {
             console.log('previewCode is set to ' + data.previewCode);
         });
 
-
-
         chrome.storage.sync.get('debugDomain', function (data) {
             var domain = data.debugDomain;
             console.log('debugDomain is set to ' + domain);
-            if (document.domain.search(domain) != -1) {
+            if (document.domain.search(domain) != -1 && document.domain.search(domain) != 0) {
+                console.log("domain: " + document.domain.search(domain));
                 //Add the dubug code to all internal links
                 var allLinks = document.querySelectorAll('[href]');
                 for (i = 0; i < allLinks.length; i++) {
@@ -34,7 +32,7 @@ document.onreadystatechange = () => {
                 console.log('debugDomain: ' + domain + " matches: " + document.domain + " Lets Go");
 
             } else {
-                console.log('debugDomain: ' + domain + " does not match: " + document.domain + " Lets Go");
+                console.log('else debugDomain: ' + domain + " does not match: " + document.domain + " Lets Go");
 
 
             }
@@ -42,3 +40,22 @@ document.onreadystatechange = () => {
 
     }
 };
+
+
+chrome.runtime.onMessage.addListener(
+    function (request, sender, sendResponse) {
+        console.log("request.pageAction: " + request.pageAction);
+        if (request.pageAction == "sendEvent") {
+            var script = document.createElement('script');
+            script.innerHTML = 'var _paq = window._paq = window._paq || []; _paq.push(["trackEvent","' + request.eventCategory + '","' + request.eventAction + '","' + request.eventName + '","' + request.eventValue + '"]);';
+            document.querySelector('body').appendChild(script);
+        }
+        if (request.pageAction == "sendPageview") {
+            var script = document.createElement('script');
+            script.innerHTML = 'var _paq = window._paq = window._paq || []; _paq.push(["setDocumentTitle","' + request.documentTitle + '"]);_paq.push(["setCustomUrl","' + request.customUrl + '"]); _paq.push(["trackPageView"]);';
+            document.querySelector('body').appendChild(script);
+        }
+        sendResponse({
+            response: "Pageview was sent!"
+        });
+    });

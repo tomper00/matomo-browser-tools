@@ -1,8 +1,9 @@
 {
-    "name": "Open Digital Analytics - Matomo Browser Tools",
+    "name": "Matomo Browser Tools by @tomper00",
     "version": "1.0",
     "description": "Help you work with Matomo in the browser",
-    "permissions": ["activeTab", "declarativeContent", "storage","notifications"],
+    "permissions": ["tabs","http://*/*", "https://*/*", "declarativeContent", "storage", "notifications"],
+    "permissions": ["tabs","http://*/*", "https://*/*", "declarativeContent", "storage", "notifications"],
     "background": {
         "scripts": ["background.js"],
         "persistent": false

@@ -1,64 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-        h1 {
-            font-size: 15px;
-            margin: 15px;
-        }
-        h2 {
-            font-size: 13px;
-        } 
-        #logo {
-            float: left;
-        }    
-      body {
-        height: 200px;
-        width: 500px;
-        outline: none;
-        padding: 10px;
-        text-align: left;
-        display: block;
-          
-      }
-        input {
-            display: block;
-            margin-bottom: 10px;
-        }
-        #tagmanagerDebugWrapper {
-            display: grid;
-            padding: 20px;
-            clear: both;
-            border: 1px solid #cccccc;
-        } 
-        button {
-            margin-top: 10px;
-            
-          width: 200px;
-          height: 20px;
-        }
-        label {
 
+<head>
+    <script src="pupup-include.js"></script>
+    <link type="text/css" rel="stylesheet" href="popup-styles.css">    
+ </head>
 
-        }
-    </style>
-  </head>
-  <body>
-    <img id="logo" width="50" src="images/oda-logo-128.png">  
-    <h1>Matomo Browser Tools by @tomper00</h1>  
-    <div id="tagmanagerDebugWrapper">  
-    <h2>Appy Matomo TagManager debugging to all your pages</h2>
-    <label>Enable debugging</label>
-    <input name="enableDebug" id="enableDebug" type="checkbox"/>
-    <label>Add your preview code</label>
-    <label>example <b>PUugUwJJ</b> ("Do not add the ?mtmPreviewMode part")</label>
-    <label>You will find this code in you TagManager</label>
-    <input id="previewCode" name="previewCode" type="text"/>
-    <label>Add the domain where you want this code to run.</label>
-    <label>Example: example.com (do not include http or https) </label>
-    <input id="debugDomain" name="debugDomain" type="text"/>      
+<body>
+    <img id="logo" width="50" src="images/oda-logo-128.png">
+    <h1>Matomo Browser Tools by @tomper00</h1>
+    <div class="tab">
+        <button id="tagmanagerDebugBTN" class="tablinks" >TagManager debugging</button>
+        <button id="pageviewSimulatorBTN" class="tablinks">Pageview simulator</button>
+        <button id="eventSimulatorBTN" class="tablinks">Event simulator</button>
+    </div>
+    <div id="tagmanagerDebugWrapper" class="tabcontent">
+        <h2>Appy Matomo TagManager debugging to all your pages</h2>
+        <label>Enable debugging</label>
+        <input name="enableDebug" id="enableDebug" type="checkbox" />
+        <label>Add your preview code</label>
+        <label>example <b>PUugUwJJ</b> ("Do not add  ?mtmPreviewMode")</label>
+        <label>You will find this code in you TagManager</label>
+        <input id="previewCode" name="previewCode" type="text" />
+        <label>Add the domain where you want this code to run.</label>
+        <label>Example: example.com (do not include http or https) </label>
+        <input id="debugDomain" name="debugDomain" type="text" />
+        <label><b>Note: after saving you will need to reload the page.</b></label>
+    </div>
+    <div id="pageviewSimulator" class="tabcontent">
+        <h2>Send custom pageviews</h2>
+        <label>You can test if pageviews work by sending fake pageviews.</label>
+        <label>Adjust the title and URL you would like to send</label>
+        <input name="documentTitle" id="documentTitle" placeholder="Page title" type="text" />
+        <input name="customUrl" id="customUrl" placeholder="Page URL" type="text" />
+        <button id="sendPageview">Send pageview</button>
+        <p>To verify that i works Open the Chrome network tab and look for requests to you Matomo server.</p>
+        <p>It should start with something like this:</p>
+        <p>https://your-matomo-server/matomo.php?action_name=PAGETITLE.....</p>
+    </div>
+    <div id="eventSimulator" class="tabcontent">
+        <h2>Send custom events</h2>
+        <label>You can test events</label>
+        <label>Adjust the Category, Action and Name data you wish to send.</label>
+        <input name="eventCategory" id="eventCategory" placeholder="Event Category" type="text" />
+        <label for="eventCategory">Event Category</label>
+        <input name="eventAction" id="eventAction" placeholder="Event Action" type="text" />
+        <label for="eventAction">Event Action</label>
+        <input name="eventName" id="eventName" placeholder="Event Name" type="text" />
+        <label for="eventName">Event Name</label>
+        <input name="eventValue" id="eventValue" placeholder="Event Value (Numeric optional)" type="text" />
+        <label for="eventValue">Event Value</label>
+        <button id="sendEvent">Send event</button>
+        <p> learn more about Matomo events here <a target="_blank" href="https://matomo.org/docs/event-tracking/">https://matomo.org/docs/event-tracking/</a></p>
+        <p>To verify that i works Open the Chrome network tab and look for requests to you Matomo server.</p>
+        <p>It should start with something like this:</p>
+        <p>https://your-matomo-server/matomo.php?e_c=EventCategory&EventAction.....</p>
     </div>
     <script src="popup.js"></script>
-        
-  </body>
+</body>
+
 </html>
