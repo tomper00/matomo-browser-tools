@@ -6,26 +6,32 @@
 
 
 //Enable Dubugging
-chrome.storage.sync.get('enableDebug', function (data) {
-    if (data.enableDebug) {
-        document.getElementById('enableDebug').checked = data.enableDebug;
-        console.log('enableDebug is set to ' + data.enableDebug);
+chrome.storage.sync.get('enableDeb', function (data) {
+    if (data.enableDeb) {
+        document.getElementById('enableDebug').checked = data.enableDeb;
+        console.log('enableDeb is set to ' + data.enableDeb);
     } else {
-        console.log('enableDebug is not set');
+        console.log('enableDeb is not set');
 
     }
 });
 //let enableDebug = document.getElementById('enableDebug');
 document.getElementById('enableDebug').addEventListener("change", function () {
-    var debugState = this.checked;
+    var enableDeb;
+    if (this.checked)
+        enableDeb = true;
+    else
+        enableDeb = false;
+
     chrome.storage.sync.set({
-        enableDebug: debugState
+        enableDeb: enableDeb
     }, function () {
         //console.log('debug is set to ' + debugState);
     })
+
     //Test to read the data For dubug purposes
-    chrome.storage.sync.get('enableDebug', function (data) {
-        console.log('debug is set to ' + data.enableDebug);
+    chrome.storage.sync.get('enableDeb', function (data) {
+        console.log('enableDeb is set to ' + data.enableDeb);
     });
 
 });
@@ -186,19 +192,18 @@ chrome.storage.sync.get('eventValue', function (data) {
     }
 });
 document.getElementById('eventValue').addEventListener("change", function () {
-    if(!isNaN(this.value)) {    
-    var eventValue = this.value;
-    console.log(eventValue);
-    chrome.storage.sync.set({
-        eventValue: eventValue
-    }, function () {
-        console.log('eventValue is set to ' + eventValue);
-    })
-    }
-    else {
+    if (!isNaN(this.value)) {
+        var eventValue = this.value;
+        console.log(eventValue);
+        chrome.storage.sync.set({
+            eventValue: eventValue
+        }, function () {
+            console.log('eventValue is set to ' + eventValue);
+        })
+    } else {
         document.getElementById('eventValue').value = null;
         alert("eventValue must be a number");
-    }    
+    }
 
 });
 document.getElementById('tagmanagerDebugBTN').addEventListener("click", function () {
@@ -222,8 +227,10 @@ document.getElementById('sendPageview').addEventListener("click", function () {
     sendPageview();
 
 });
+
 function getActiveTab() {
-  return browser.tabs.query({active: true, currentWindow: true});
+    return browser.tabs.query({
+        active: true,
+        currentWindow: true
+    });
 }
-
-
