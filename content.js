@@ -14,13 +14,13 @@ document.onreadystatechange = () => {
 
             console.log('enableDeb is set to ' + enableDeb);
 
-            if (enableDeb == "true") {
+            if (enableDeb == true) {
 
                 chrome.storage.sync.get('debugDomain', function (data) {
                     var domain = data.debugDomain;
                     console.log('debugDomain is set to ' + domain);
-                    if (document.domain.search(domain) != -1 && document.domain.search(domain) != 0) {
-                        console.log("domain: " + document.domain.search(domain));
+                    if (location.hostname.search(domain) != -1) {
+                        console.log("domain: " + location.hostname.search(domain));
                         //Add the dubug code to all internal links
                         var allLinks = document.querySelectorAll('[href]');
                         for (i = 0; i < allLinks.length; i++) {
@@ -38,10 +38,10 @@ document.onreadystatechange = () => {
                                     allLinks[i].href = allLinks[i].href + "?mtmPreviewMode=" + previewCode;
                         }
 
-                        console.log('debugDomain: ' + domain + " matches: " + document.domain + " Lets Go");
+                        console.log('debugDomain: ' + domain + " matches: " + location.hostname + " Lets Go");
 
                     } else {
-                        console.log('else debugDomain: ' + domain + " does not match: " + document.domain + " Lets Go");
+                        console.log('else debugDomain: ' + domain + " does not match: " + location.hostname + " Lets Go");
 
 
                     }
